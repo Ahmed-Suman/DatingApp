@@ -1,0 +1,4 @@
+.vs\DatingAPI
+bin
+obj
+*.db
