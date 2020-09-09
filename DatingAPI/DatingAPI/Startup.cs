@@ -40,13 +40,9 @@ namespace DatingAPI
             {
                 o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
-            //.AddJsonOptions(options =>
-            //{
-            //    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-            //    options.JsonSerializerOptions.PropertyNamingPolicy = null;
-            //});
-
+           
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(DatingRepository).Assembly);
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
@@ -101,6 +97,7 @@ namespace DatingAPI
 
             app.UseEndpoints(endpoints =>
             {
+               // endpoints.MapDefaultControllerRoute();
                 endpoints.MapControllers();
             });
         }
